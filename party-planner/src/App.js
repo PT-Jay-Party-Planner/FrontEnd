@@ -6,58 +6,30 @@ import {ShoppingContext} from "./contexts/shoppingContext";
 import data from '../src/data'
 import AddShoppingList from "./components/addShoppingList";
 import AddParty from  './components/addParty';
-import Party from './components/partyForm';
-import ShoppingForm from './components/shoppingForm';
+//  import ShoppingForm from './components/shoppingForm';
 import {BrowserRouter as Router, Route} from "react-router-dom";
-function App() {
+
+
+ 
  
 
    
-  const initialList =[]
+  function App() {
 
-  const shoppingList = [{ item:'BackFatt', price:6900}]
-  const [items] = useState(shoppingList)
-   
+    const ShoppingList =[]
+     const [items] =useState(ShoppingList)
 
-   const [list, setList] =useState([]);
-   console.log ("ITEMS FROM APP", items)
-   const [party, setParty] = useState([]);
-
-   const addItem = item =>{
-     setList([...items, item])
-
-      // const [partyEdit, setPartyEdit] = useState([]);
-   }
-
-  return (
+    return (
+      <ShoppingContext.Provider value={items}>
+        <PartyContext.Provider>
+          <div className="App">
+            <header className="App-header"></header>
+          </div>
+          <Route exact path ="/" component ={AddParty}/>
+          <Route exact path ="/shopping" component={AddShoppingList}/>
+        </PartyContext.Provider>
+      </ShoppingContext.Provider>
+    );
+  }
   
-<div> 
-
-<PartyContext.Provider value ={{party,setParty}}>
- 
- 
- <Route path ="/" component = {AddParty}/>
-  
-       
-</PartyContext.Provider>
-
-
-<ShoppingContext.Provider value ={{items}}>
-
-  <Route path ="/shopping" component ={AddShoppingList}/>
-</ShoppingContext.Provider>
-
- 
-</div>
- 
-
- 
-
-
-   
-
-      
-   );
-}
-
-export default App;
+  export default App;

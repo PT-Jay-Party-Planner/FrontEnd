@@ -5,6 +5,7 @@ import data from '../data';
 import ShoppingItem from './shoppingItem';
 
 
+
 const AddShoppingList = (props)=> {
       
     let initialBudget =1000.00;
@@ -32,9 +33,10 @@ const AddShoppingList = (props)=> {
       console.log("PROPS", props.match.params)
      
 
-     console.log("PROPS!!")
+     
 
-     const deleteItem = () => {
+     const deleteItem = (item ,e ) => {
+      //  e.preventDefault();
            
 
       console.log("DELETE THIS", item)
@@ -136,13 +138,14 @@ const AddShoppingList = (props)=> {
       <div>
 
         <h1>Shopping List</h1>
-
+                <h2>${budget}</h2>
           {list.map (item=> {
 
             return <div>
+              <h3>{item.id}</h3>
               <h2>{item.item}</h2>
               <h2>{item.price}</h2>
-              <button onClick = {()=> {deleteItem(item)}}>X</button>
+              <button onClick = {(e)=> {deleteItem(item)}}>X</button>
 
 
 
