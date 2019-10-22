@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import'./design/index.less';
+
+import "./design/index.less";
 import App from "./App";
 import {BrowserRouter as Router, Route} from "react-router-dom";
 

@@ -1,5 +1,7 @@
 import React ,{useState} from "react";
 import "./App.css";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+
 
 import {PartyContext} from "./contexts/partyContext";
 import {ShoppingContext} from "./contexts/shoppingContext";
@@ -9,6 +11,8 @@ import AddParty from  './components/addParty';
 import Party from './components/partyForm';
 import ShoppingForm from './components/shoppingForm';
 import {BrowserRouter as Router, Route} from "react-router-dom";
+import RegisterUser from "./components/register";
+
 function App() {
  
 
@@ -30,34 +34,18 @@ function App() {
    }
 
   return (
-  
-<div> 
+    <ShoppingContext.Provider>
+      <PartyContext.Provider>
+        <div className="App">
+          <Router>
+            {/* <Route exact path="/login" component={login} /> */}
+            <Route exact path="/register" component={RegisterUser} />
+          </Router>
+        </div>
+      </PartyContext.Provider>
+    </ShoppingContext.Provider>
+  );
 
-<PartyContext.Provider value ={{party,setParty}}>
- 
- 
- <Route path ="/" component = {AddParty}/>
-  
-       
-</PartyContext.Provider>
-
-
-<ShoppingContext.Provider value ={{items}}>
-
-  <Route path ="/shopping" component ={AddShoppingList}/>
-</ShoppingContext.Provider>
-
- 
-</div>
- 
-
- 
-
-
-   
-
-      
-   );
 }
 
 export default App;
