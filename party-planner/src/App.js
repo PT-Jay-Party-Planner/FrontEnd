@@ -7,14 +7,18 @@ import ShoppingContext from "./contexts/shoppingContext";
 
 import RegisterUser from "./components/register";
 
+import Nav from "./components/nav";
+
 function App() {
   return (
     <ShoppingContext.Provider>
       <PartyContext.Provider>
         <div className="App">
+          <Nav />
           <Router>
             {/* <Route exact path="/login" component={login} /> */}
             <Route exact path="/register" component={RegisterUser} />
+            <Route exact path="/" component={RegisterUser} />
           </Router>
         </div>
       </PartyContext.Provider>
