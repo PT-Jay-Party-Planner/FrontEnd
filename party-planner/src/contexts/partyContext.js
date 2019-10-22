@@ -1,5 +1,6 @@
 import { createContext } from "react";
 
-const PartyContext = createContext();
+ export const PartyContext = createContext();
+//  export  default   PartyContext = createContext();
 
-export default PartyContext;
+ 
