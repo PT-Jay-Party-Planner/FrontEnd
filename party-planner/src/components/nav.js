@@ -3,20 +3,8 @@ import { NavLink } from "react-router-dom";
 import { ShoppingContext } from "../contexts/shoppingContext";
 
 const Nav = () => {
-  const { partyBudget, setPartyBudget } = useContext(ShoppingContext);
-  const [editing, setEditing] = useState(false);
-
-  setPartyBudget(0);
-
-  const budgetChange = e => {
-    e.preventDefault();
-    setPartyBudget(partyBudget);
-  };
-
-  console.log(partyBudget);
-
   return (
-    <nav class="nav-container">
+    <nav className="nav-container">
       <NavLink className="nav-link" to="/dashboard">
         <img src="LOGO"></img>
       </NavLink>

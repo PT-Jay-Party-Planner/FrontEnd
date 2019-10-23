@@ -12,9 +12,10 @@ const Login = () => {
   const handleLogin = e => {
     e.preventDefault();
     axiosWithAuth()
-      .post("/login", userData)
+      .post("/auth/login", userData)
       .then(res => {
-        localStorage.setItem("token", res.data.payload);
+        localStorage.setItem("Authorization", res.data.token);
+        console.log(res.data);
         history.push("/shopping-list");
       })
       .catch(err => console.log(err));

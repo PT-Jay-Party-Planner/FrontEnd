@@ -22,6 +22,14 @@ const AddParty = () => {
           onChange={e => setPartyList({ theme: e.target.value })}
         />
       </label>
+      <label>
+        Date
+        <input
+          type="date"
+          placeholder="Date"
+          onChange={e => setPartyList({ theme: e.target.value })}
+        />
+      </label>
     </div>
   );
 };

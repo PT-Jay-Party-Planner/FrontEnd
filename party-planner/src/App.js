@@ -11,6 +11,7 @@ import PrivateRoute from "./utils/privateRoute";
 import Nav from "./components/nav";
 import axiosWithAuth from "./utils/axiosWithAuth";
 import Login from "./components/login";
+import AddParty from "./components/addParty";
 
 function App() {
   const [shoppingList, setShoppingList] = useState([]);
@@ -27,8 +28,6 @@ function App() {
       .catch(err => console.log(err));
   }, []);
 
-  console.log(shoppingList);
-
   return (
     <ShoppingContext.Provider
       value={{ shoppingList, setShoppingList, partyBudget, setPartyBudget }}
@@ -43,7 +42,7 @@ function App() {
               <Redirect to="/dashboard"></Redirect>
             </Route>
             {/* <PrivateRoute exact path="/dashboard" component={Dashboard} /> */}
-            {/* <PrivateRoute exact path="/party" component={AddParty} /> */}
+            <PrivateRoute exact path="/add-party" component={AddParty} />
             <PrivateRoute
               exact
               path="/shopping-list"
