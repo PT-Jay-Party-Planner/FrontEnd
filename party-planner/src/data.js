@@ -1,12 +1,12 @@
 export default [
 
   {
-      id:1,
+     id:Date().now*10,
       item:"Box of Wine",
       price: 50.00
   },
   {
-      id:2,
+    id:Date().now*10,
       item: "DJ and Soundsystem rental",
       price: 300.00
   }

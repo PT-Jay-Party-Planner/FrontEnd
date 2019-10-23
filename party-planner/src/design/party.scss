@@ -1,0 +1,366 @@
+
+@media(max-width:1500px){
+
+  .container{
+    width:1500px;
+  }
+  .Form{
+    width:100%;
+   display:flex;
+   align-items: center;
+ }
+ 
+ .Row{
+ 
+   display:flex;
+    padding: 30px;
+   align-items: center;
+   width:100%;
+ 
+ 
+ }
+
+  .header{
+    display:block;
+    align-items: center;
+    width:100%;
+   }
+  
+   
+  .Party{
+     
+      
+      width:25%;
+      font:RalewayMedium;
+     font-size: 48pt;
+     margin-left:200px;
+  
+  }
+  
+  
+  label{
+  color: #143c74;
+  
+   font: RobotoSlab-Regular;
+  font-size: 24pt;
+  margin:10px;
+  }
+
+  .name-div{
+    display: flex;
+    flex-direction: column;
+    padding:30px;
+    align-items: center;
+    border-bottom:2px solid grey;
+    margin:4px;
+    width:50%;
+    
+   
+    
+  }
+   
+  .name-div:hover {
+    background-color: #f58676;}
+
+    .location-div{
+      display: flex;
+      flex-direction: column;
+      padding:30px;
+      align-items: center;
+      border-bottom:2px solid grey;
+      margin:10px;
+      width:45%;
+       
+
+    }
+  
+    .location-div:hover{
+      background-color: #f58676;
+  
+    }
+
+    .second-divs{
+
+      display: flex;
+      flex-direction: column;
+      padding:30px;
+      align-items: center;
+      border-bottom:2px solid grey;
+      margin:4px;
+      width:50%;
+    }
+
+    .second-divs:hover{
+      background-color: #f58676;
+
+    }
+
+    .guests{
+      display: flex;
+      flex-direction: column;
+      padding:30px;
+      align-items: center;
+      border-bottom:2px solid grey;
+      margin:4px;
+      width:100%;
+
+    }
+    .guests:hover{
+      background-color: #f58676;
+
+    }
+  .budget {
+    display: flex;
+    flex-direction: column;
+    padding:30px;
+    align-items: center;
+    border-bottom:2px solid grey;
+    margin:4px;
+    width:100%;
+
+
+  }
+  .budget:hover{
+    background-color: #f58676;
+
+  }
+
+button{
+  font: RalewayExtra bold;
+ font-size: 18pt;
+ background-color:#f58676;
+}
+.button-div{
+
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  padding:20px;
+  
+ }
+
+}
+
+
+
+
+
+
+
+@media (max-width:600px){
+.header{
+  display:block;
+  align-items: center;
+  width:100%;
+  align-content: center;
+}
+
+h1{
+
+  font:RalewayMedium;
+   font-size: 24pt;
+}
+.Party{
+  display:flex;
+  align-items: center;
+   margin:30px;
+    width:50%;
+   margin-left:160px;
+
+}
+
+
+label{
+color: #143c74;
+
+ font: RobotoSlab-Regular;
+font-size: 14pt;
+margin:10px;
+}
+.Form{
+   width:600px;
+  display:flex;
+  align-items: center;
+}
+
+.Row{
+
+  display:flex;
+   padding: 30px;
+  align-items: center;
+
+
+}
+ 
+.name-div{
+  display: flex;
+  flex-direction: column;
+  padding:30px;
+  align-items: center;
+  border-bottom:2px solid grey;
+  margin:4px;
+  
+ 
+  
+}
+ 
+.name-div:hover {
+  background-color: #f58676;}
+
+  .location-div:hover{
+    background-color: #f58676;
+
+  }
+
+  .guests{
+    display:flex;
+    flex-direction: column;
+   width:90%;
+   padding:30px;
+   align-items: center;
+   border-bottom:2px solid grey;
+ 
+ 
+ }
+ .guests:hover{
+   background-color: #f58676;
+ }
+ 
+ .budget{
+ 
+   display:flex;
+   flex-direction: column;
+  width:90%;
+  padding:30px;
+  align-items: center;
+  border-bottom:2px solid grey;
+ 
+  
+ 
+ 
+ }
+ .budget:hover{
+   background-color: #f58676;
+ }
+ 
+ .bottom{
+ 
+  display:flex;
+   height:10%;
+     
+ }
+ 
+  .button-div{
+ 
+   display:flex;
+   flex-direction: column;
+   align-items: center;
+   padding:20px;
+   
+  }
+ 
+.second-divs{
+
+  display: flex;
+  flex-direction: column;
+  padding:30px;
+  align-items: center;
+  border-bottom:2px solid grey;
+  margin:4px;
+
+}
+.second-divs:hover{
+  background-color: #f58676;
+}
+.location-div{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding:30px;
+  margin:4px;
+
+  border-bottom:2px solid grey;
+
+   
+
+
+}
+
+.guests{
+   display:flex;
+   flex-direction: column;
+  width:90%;
+  padding:30px;
+  align-items: center;
+  border-bottom:2px solid grey;
+
+
+}
+.guests:hover{
+  background-color: #f58676;
+}
+
+.budget{
+
+  display:flex;
+  flex-direction: column;
+ width:90%;
+ padding:30px;
+ align-items: center;
+ border-bottom:2px solid grey;
+
+ 
+
+
+}
+.budget:hover{
+  background-color: #f58676;
+}
+
+.bottom{
+
+ display:flex;
+  height:10%;
+    
+}
+
+ .button-div{
+
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  padding:20px;
+  
+ }
+
+ button{
+  padding:9px;
+  font: RalewayExtra bold;
+  font-size: 14pt;
+   border-radius: 10px;
+   background-color: #f58676;
+
+  
+ }
+
+ button:hover{
+  box-shadow: 0px 5px 37px -22px rgba(0, 0, 0, 1);
+
+ }
+
+ .footer{
+
+  display:flex;
+  height:25%;
+ 
+ }
+ .cupcake{
+   display:block;
+   height:100%;
+ }
+
+
+
+}
+
+ 

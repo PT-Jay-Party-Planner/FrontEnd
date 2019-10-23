@@ -6,7 +6,7 @@ import ShoppingItem from './shoppingItem';
 
 
 
-const AddShoppingList = (props)=> {
+const AddShoppingList = (props )=> {
       
     let initialBudget =1000.00;
     // let message ='';
@@ -20,18 +20,17 @@ const AddShoppingList = (props)=> {
 
     const {items} = useContext(ShoppingContext);
 
-     const initialItems = []
-     const [cart, setCart] = useState(items)
-
-     const [list, setList] = useState(initialItems)
+     const initialItems = [ ]
+    
+     const [list, setList] = useState(items)
     const [item, setItem] = useState(initialItem);
     const [budget, setBudget]= useState(initialBudget)
     const [message, setMessage]= useState(initialMessage);
     //  const budget = 1000;
      console.log( "ITEMS", items)
      console.log("LIST", list )
-      console.log("PROPS", props.match.params)
-     
+     console.log("ADD ITEM", item, 'SHOPPINGLIST')
+      
 
      
 
@@ -68,13 +67,13 @@ const AddShoppingList = (props)=> {
      const addThing = e => {
          e.preventDefault();
          const newItem ={
-             id: item.id++,
+             id: Date.now() *10,
               item: item.item,
              price: item.price,
              budget: budget-item.price 
          };
 
-         const  id = props.match.params
+         
           newItem.id+=1;
 
 
@@ -106,7 +105,7 @@ const AddShoppingList = (props)=> {
 
       //  useEffect(()=> {
 
-      //   {list.map( item => {
+      //   {items.map( item => {
       //     return(
       //        <div className ="item-div" key={item.id}>
       //       <h2> HERE{item.id}</h2>
@@ -117,14 +116,14 @@ const AddShoppingList = (props)=> {
           
           
       //     )
-      // })}
+      // }) }
 
 
 
 
 
 
-      //  }, [])
+      //  }, [items.length])
 
 
 
@@ -137,9 +136,9 @@ const AddShoppingList = (props)=> {
     return(
       <div>
 
-        <h1>Shopping List</h1>
+        <h1 className ="List">Shopping List</h1>
                 <h2>${budget}</h2>
-          {list.map (item=> {
+          {items.map (item=> {
 
             return <div>
               <h3>{item.id}</h3>
@@ -147,9 +146,9 @@ const AddShoppingList = (props)=> {
               <h2>{item.price}</h2>
               <button onClick = {(e)=> {deleteItem(item)}}>X</button>
 
-
-
+ 
               </div>
+              
 
           })}
 

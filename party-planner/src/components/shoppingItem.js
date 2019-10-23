@@ -7,13 +7,7 @@ const ShoppingItem = props => {
 
 
     
-  //   const deleteItem = item => {
-  //     const filtered = items.filter(
-  //         i=>{ i !== i.id}
-  //     )
-  //     setItems[filtered]
-  // }
-   
+  
 
     return (
         <div key = {props.item.id}>
