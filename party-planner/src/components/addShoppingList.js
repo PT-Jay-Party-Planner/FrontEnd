@@ -1,101 +1,50 @@
-import React, { useContext, useState } from "react";
-import { ShoppingContext } from "../contexts/shoppingContext";
+import React, { useState, useEffect } from "react";
+import axiosWithAuth from "../utils/axiosWithAuth";
 
-const ShoppingList = () => {
-  const { shoppingList, setShoppingList } = useContext(ShoppingContext);
-  const { partyBudget, setPartyBudget } = useContext(ShoppingContext);
+import ShoppingItem from "../components/shoppingItem";
 
-  const [shoppingData, setShoppingData] = useState({
-    name: "",
-    cost: ""
-  });
+const ShoppingList = props => {
+  const id = props.match.params.id;
+  const [shoppingList, setShoppingList] = useState([]);
+  const [budget, setBudget] = useState([]);
+  const [editItem, setEditItem] = useState(false);
 
-  const [displayFormData, setDisplayFormData] = useState({
-    budg: ""
-  });
+  useEffect(() => {
+    axiosWithAuth()
+      .get(`/parties/${id}/shopping/`)
+      .then(res => setShoppingList(res.data))
+      .catch(err => console.log(err));
 
-  const [displayEditBudget, setDisplayEditBudget] = useState(false);
+    axiosWithAuth()
+      .get(`/parties/${id}`)
+      .then(res => setBudget(res.data))
+      .catch(err => console.log(err));
+  }, [editItem]);
 
-  setPartyBudget(0);
+  console.log(shoppingList);
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    setShoppingList([...shoppingList, { name: shoppingData.name }]);
-    setPartyBudget(partyBudget - shoppingData.cost);
-  };
-
-  const handleChange = e => {
-    setShoppingData({
-      ...shoppingData,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const displayHandleChange = e => {
-    setDisplayFormData({
-      ...displayFormData,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const displayForm = e => {
-    e.preventDefault();
-    setDisplayEditBudget(!displayEditBudget);
-  };
-
-  const displayFormSubmit = e => {
-    e.preventDefault();
-    setPartyBudget(displayFormData.budg);
-    console.log(displayFormData.budg);
+  const calculator = (bud, price) => {
+    if (bud) {
+      const total = price.reduce((acc, obj) => acc + obj.price, 0);
+      console.log(total);
+      return bud - total;
+    }
   };
 
   return (
     <div className="shopping-list-container">
       <div className="budget-section">
-        ${partyBudget}
-        {displayEditBudget && (
-          <form onSubmit={displayFormSubmit}>
-            <input
-              type="number"
-              placeholder="enter budget"
-              name="budg"
-              defaultValue={partyBudget}
-              onChange={displayHandleChange}
-            />
-            <button type="submit">Save</button>
-          </form>
-        )}
-        <div className="edit-budget-button">
-          <button onClick={e => displayForm(e)}>Edit Budget</button>
-        </div>
+        Total Budget Remaining! ${calculator(budget.budget, shoppingList)}
       </div>
-      {shoppingList.map(a => a.name)}
-
-      <div className="shopping-form-container">
-        <form onSubmit={handleSubmit} className="add-item-form">
-          <label>
-            Add New Item
-            <input
-              type="text"
-              placeholder="Add Item"
-              name="name"
-              onChange={handleChange}
-              value={shoppingData.name}
-            />
-          </label>
-          <label>
-            Add budget $
-            <input
-              type="number"
-              placeholder="10"
-              name="cost"
-              onChange={handleChange}
-              value={shoppingData.cost}
-            />
-          </label>
-          <button type="submit">Submit</button>
-        </form>
-      </div>
+      {shoppingList.map(item => (
+        <ShoppingItem
+          key={id}
+          item={item}
+          editItem={editItem}
+          setEditItem={setEditItem}
+          id={budget.id}
+        />
+      ))}
     </div>
   );
 };

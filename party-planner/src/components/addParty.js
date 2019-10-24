@@ -1,12 +1,9 @@
-import React, { useContext } from "react";
-import { PartyContext } from "../contexts/partyContext";
+import React, { useState } from "react";
 
 const AddParty = () => {
-  const { partyList, setPartyList } = useContext(PartyContext);
-
   return (
     <div className="add-party-container">
-      <label>
+      {/* <label>
         Number Of Guests
         <input
           type="text"
@@ -29,7 +26,7 @@ const AddParty = () => {
           placeholder="Date"
           onChange={e => setPartyList({ theme: e.target.value })}
         />
-      </label>
+      </label> */}
     </div>
   );
 };

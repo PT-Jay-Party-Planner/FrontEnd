@@ -1,31 +1,64 @@
-import React from 'react';
-
+import React, { useState } from "react";
+import axiosWithAuth from "../utils/axiosWithAuth";
 
 const ShoppingItem = props => {
-    console.log(" ITEM PROPS", props)
+  const [displayEditItem, setDisplayEditItem] = useState(false);
+  const [itemList, setItemList] = useState(props.item);
 
+  const handleChange = e => {
+    setItemList({
+      ...itemList,
+      [e.target.name]: e.target.value
+    });
+  };
 
+  const handleSubmit = e => {
+    e.preventDefault();
+    axiosWithAuth()
+      .put(`/parties/${props.id}/shopping/${props.item.id}`, itemList)
+      .then(res => props.setEditItem(!props.editItem))
+      .catch(err => console.log(err));
+  };
 
-    
-  //   const deleteItem = item => {
-  //     const filtered = items.filter(
-  //         i=>{ i !== i.id}
-  //     )
-  //     setItems[filtered]
-  // }
-   
+  const whatever = () => {
+    setItemList({ ...itemList, price: Number(itemList.price) });
+  };
 
-    return (
-        <div key = {props.item.id}>
-          <h1>{props.item.id}</h1>
-           <h1>{props.item.item}</h1>
-          <h2>{props.item.price}</h2>
-          <button onClick ={props.delete}>X</button>
+  console.log(itemList);
 
+  return (
+    <div>
+      <h1>{props.item.item}</h1>
+      <h2>${props.item.price}</h2>
 
-
-        </div>
-    )
-}
+      <div className="shopping-form-container">
+        <form onSubmit={handleSubmit} className="add-item-form">
+          <label>
+            Add New Item
+            <input
+              type="text"
+              placeholder="Add Item"
+              name="item"
+              onChange={handleChange}
+              value={itemList.item}
+            />
+          </label>
+          <label>
+            Add budget $
+            <input
+              type="number"
+              placeholder="10"
+              name="price"
+              onChange={handleChange}
+              value={itemList.price}
+              onBlur={whatever}
+            />
+          </label>
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+  );
+};
 
 export default ShoppingItem;
