@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import ShoppingList from "./components/addShoppingList";
 import RegisterUser from "./components/register";
 import PrivateRoute from "./utils/privateRoute";
+import TodoPage from './components/toDoPage';
 
 import Nav from "./components/nav";
 import Login from "./components/login";
@@ -31,8 +32,10 @@ function App() {
         />
         <PrivateRoute exact path="/add-party" component={AddParty} />
         <PrivateRoute exact path="/edit-party/:id" component={EditParty} />
+        <Route path="/todo" component={TodoPage} />
       </Router>
     </div>
+
   );
 }
 
