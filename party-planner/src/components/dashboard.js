@@ -4,6 +4,7 @@ import axiosWithAuth from "../utils/axiosWithAuth";
 
 const Dashboard = props => {
   const [partyList, setPartyList] = useState([]);
+  const [shoppingList, setShoppingList] = useState([]);
 
   useEffect(() => {
     axiosWithAuth()
@@ -21,10 +22,6 @@ const Dashboard = props => {
       {partyList.map(id => (
         <Link to={`/party/${id.id}`}>{id.party_name}</Link>
       ))}
-
-      <Link to="/edit-shopping-list/1">
-        <button>Party 1</button>
-      </Link>
     </>
   );
 };

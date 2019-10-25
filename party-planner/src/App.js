@@ -3,7 +3,6 @@ import "./App.css";
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import RegisterUser from "./components/register";
 import PrivateRoute from "./utils/privateRoute";
-import TodoPage from './components/toDoPage';
 
 import Nav from "./components/nav";
 import Login from "./components/login";
@@ -13,6 +12,7 @@ import PartyItem from "./components/partyItem";
 import ShoppingEdit from "./components/addShoppingList";
 import ShoppingItem from "./components/shoppingItem";
 import EditParty from "./components/editParty";
+import ToDoPage from "./components/toDoPage";
 
 function App() {
   return (
@@ -38,10 +38,9 @@ function App() {
         />
         <PrivateRoute exact path="/add-party" component={AddParty} />
         <PrivateRoute exact path="/edit-party/:id" component={EditParty} />
-        <Route path="/todo" component={TodoPage} />
+        <PrivateRoute exact path="/to-do-list" component={ToDoPage} />
       </Router>
     </div>
-
   );
 }
 
