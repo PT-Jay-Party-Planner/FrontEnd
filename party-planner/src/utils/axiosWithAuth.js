@@ -1,12 +1,11 @@
 import axios from "axios";
 
 const axiosWithAuth = () => {
-  const token = localStorage.getItem("token");
-
+  const Authorization = localStorage.getItem("Authorization");
   return axios.create({
-    baseURL: "HEROKU LINK WHEN DONE",
+    baseURL: "https://pt-jay-party-planner.herokuapp.com",
     headers: {
-      Authorization: token
+      Authorization: Authorization
     }
   });
 };
