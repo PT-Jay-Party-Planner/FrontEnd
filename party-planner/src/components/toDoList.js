@@ -1,4 +1,7 @@
 import React, {useState} from 'react';
+import { Icon, InlineIcon } from '@iconify/react';
+import plusSign from '@iconify/icons-el/plus-sign';
+
 
 function Todo({todo, index, finishTodo, removeTodo}){
     return(
@@ -18,89 +21,20 @@ function TodoForm({addTodo}){
         if(!value) return;
         addTodo(value);
         setValue('');
-        placeholder="Add new task";
+    
     }
     return(
-        <form onSubmit={handleSubmit}>
-            <input type="text" className="input" value={value} onChange={e=> setValue(e.target.value)}/>
+        
+        <form style={{marginTop:"45%", backgroundColor: "#F3E8CB", width: "300px", height: "90px", display:"flex", justifyContent:"center", alignItems:"center", flexDirection:"column"}} onSubmit={handleSubmit}>
+            <input style={{borderStyle:"none", backgroundColor:"#F3E8CB", textAlign:"center", fontFamily:"Raleway", fontSize:"1rem", fontWeight:"bold", textDecoration:"blue underline 2px"}}type="text" className="input" value={value} onChange={e=> setValue(e.target.value)} placeholder="Add To Do Items"/>
+            <button type="submit" style={{backgroundColor:"#F3E8CB", borderStyle:"none"}}><Icon style={{fontSize:"1.5rem", color:"#F58676"}}icon={plusSign} /></button>
         </form>
     )
 }
 
 function TodoList () {
-    //list of todos - looking for api?
-    const [todos, setTodos]=useState([
-        {
-            text: "Set a date for the event",
-            isComplete: false
-        },
-        {
-            text: "Scout out locations",
-            isComplete: false
-        },
-        {
-            text: "Create your invite list",
-            isComplete: false
-        },
-        {
-            text: "Send Save-The-Date messages to guests",
-            isComplete: false
-        },
-        {
-            text: "Set a budget",
-            isComplete: false
-        },
-        {
-            text: "Choose a theme for your event",
-            isComplete: false
-        },
-        {
-            text: "Plan a menu",
-            isComplete: false
-        },
-        {
-            text: "Set a date for the event",
-            isComplete: false
-        },
-        {
-            text: "Send formal invites and request RSVP",
-            isComplete: false
-        },
-        {
-            text: "Plan entertainment",
-            isComplete: false
-        },
-        {
-            text: "Hire help such as servers, clean-up, DJ...",
-            isComplete: false
-        },
-        {
-            text: "Follow up on RSVPs",
-            isComplete: false
-        },
-        {
-            text: "Buy decorations and food",
-            isComplete: false
-        },
-        {
-            text: "Confirm venue and help",
-            isComplete: false
-        },
-        {
-            text: "Prep menu items",
-            isComplete: false
-        },
-        {
-            text: "Decorate venue",
-            isComplete: false
-        },
-        {
-            text: "Have fun!",
-            isComplete: false
-        }
-
-
-    ]);
+    
+    const [todos, setTodos]=useState([]);
 
     //add new custom task
     const addTodo=text=>{

@@ -10,9 +10,9 @@ import AddShoppingList from "./components/addShoppingList";
 import AddParty from  './components/addParty';
 import Party from './components/partyForm';
 import ShoppingForm from './components/shoppingForm';
-import {BrowserRouter as Router, Route} from "react-router-dom";
+
 import RegisterUser from "./components/register";
-import TodoList from "./components/toDoList";
+import TodoPage from "./components/toDoPage"
 
 function App() {
  
@@ -41,7 +41,7 @@ function App() {
           <Router>
             {/* <Route exact path="/login" component={login} /> */}
             <Route exact path="/register" component={RegisterUser} />
-            <Route path="/todo" component = {TodoList}/>
+            <Route path="/todo" component = {TodoPage}/>
           </Router>
         </div>
       </PartyContext.Provider>
