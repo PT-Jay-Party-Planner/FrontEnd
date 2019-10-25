@@ -1,8 +1,17 @@
 import React, { useState, useEffect } from "react";
 import axiosWithAuth from "../utils/axiosWithAuth";
 
-const AddParty = props => {
+const EditParty = props => {
   const [partyInfo, setPartyInfo] = useState([]);
+
+  const id = props.match.params.id;
+
+  useEffect(() => {
+    axiosWithAuth()
+      .get(`/parties/${id}`)
+      .then(res => setPartyInfo(res.data))
+      .catch(err => console.log(err));
+  }, []);
 
   const handleChange = e => {
     setPartyInfo({
@@ -16,13 +25,16 @@ const AddParty = props => {
     e.preventDefault();
     axiosWithAuth()
       .post("/parties", partyInfo)
-      .then(res => props.setEditItem(!props.editItem))
+      .then(res => console.log(res))
       .catch(err => console.log(err));
   };
 
   console.log(partyInfo);
+
   return (
-    <div className="add-party-container">
+    <div className="edit-party-container">
+      <h1>Edit {partyInfo.party_name}</h1>
+
       <form onSubmit={handleSubmit} className="add-party-form">
         <label>
           Party Name
@@ -31,6 +43,7 @@ const AddParty = props => {
             placeholder="Party Name"
             name="party_name"
             onChange={handleChange}
+            value={partyInfo.party_name}
           />
         </label>
         <label>
@@ -40,6 +53,7 @@ const AddParty = props => {
             placeholder="Number Of Guests"
             name="n_of_guests"
             onChange={handleChange}
+            value={partyInfo.n_of_guests}
           />
         </label>
         <label>
@@ -49,15 +63,17 @@ const AddParty = props => {
             placeholder="10"
             name="budget"
             onChange={handleChange}
+            value={partyInfo.budget}
           />
         </label>
         <label>
           Party Date
           <input
             type="date"
-            placeholder={Date()}
+            placeholder={partyInfo.date}
             name="date"
             onChange={handleChange}
+            value={partyInfo.date}
           />
         </label>
         <label>
@@ -67,6 +83,7 @@ const AddParty = props => {
             placeholder="Party Theme"
             name="theme"
             onChange={handleChange}
+            value={partyInfo.theme}
           />
         </label>
         <button type="submit">Submit</button>
@@ -75,4 +92,4 @@ const AddParty = props => {
   );
 };
 
-export default AddParty;
+export default EditParty;

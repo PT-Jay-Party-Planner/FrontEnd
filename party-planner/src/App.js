@@ -9,6 +9,8 @@ import Nav from "./components/nav";
 import Login from "./components/login";
 import AddParty from "./components/addParty";
 import Dashboard from "./components/dashboard";
+import PartyItem from "./components/partyItem";
+import EditParty from "./components/editParty";
 
 function App() {
   return (
@@ -21,12 +23,14 @@ function App() {
           <Redirect to="/dashboard"></Redirect>
         </Route>
         <PrivateRoute exact path="/dashboard" component={Dashboard} />
-        {/* <PrivateRoute exact path="/add-party" component={AddParty} /> */}
+        <PrivateRoute exact path="/party/:id" component={PartyItem} />
         <PrivateRoute
           exact
           path="/shopping-list/:id"
           component={ShoppingList}
         />
+        <PrivateRoute exact path="/add-party" component={AddParty} />
+        <PrivateRoute exact path="/edit-party/:id" component={EditParty} />
       </Router>
     </div>
   );

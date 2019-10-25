@@ -20,7 +20,7 @@ const ShoppingItem = props => {
       .catch(err => console.log(err));
   };
 
-  const whatever = () => {
+  const blurHandler = () => {
     setItemList({ ...itemList, price: Number(itemList.price) });
   };
 
@@ -34,7 +34,7 @@ const ShoppingItem = props => {
       <div className="shopping-form-container">
         <form onSubmit={handleSubmit} className="add-item-form">
           <label>
-            Add New Item
+            Edit Item
             <input
               type="text"
               placeholder="Add Item"
@@ -44,14 +44,14 @@ const ShoppingItem = props => {
             />
           </label>
           <label>
-            Add budget $
+            Edit Budget $
             <input
               type="number"
               placeholder="10"
               name="price"
               onChange={handleChange}
               value={itemList.price}
-              onBlur={whatever}
+              onBlur={blurHandler}
             />
           </label>
           <button type="submit">Submit</button>
