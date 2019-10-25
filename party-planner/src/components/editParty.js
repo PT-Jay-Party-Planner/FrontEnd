@@ -6,6 +6,20 @@ const EditParty = props => {
 
   const id = props.match.params.id;
 
+ 
+  const InitialParty = {
+    party_name: "",
+    N_of_guests: "",
+    date: "",
+    theme: " "
+
+  }
+
+
+  const [party, setParty] = useState(InitialParty)
+
+
+
   useEffect(() => {
     axiosWithAuth()
       .get(`/parties/${id}`)
@@ -21,6 +35,17 @@ const EditParty = props => {
     });
   };
 
+
+  // const handleChange = e =>{
+  //   setParty ({
+  //     ...party,
+  //     [e.target.name]:e.target.value,
+  //     user_id: 1
+  //   })
+    
+
+  // }
+
   const handleSubmit = e => {
     e.preventDefault();
     axiosWithAuth()
@@ -29,7 +54,26 @@ const EditParty = props => {
       .catch(err => console.log(err));
   };
 
-  console.log(partyInfo);
+
+const saveEdit = e => {
+  e.preventDefault();
+  axiosWithAuth()
+  .post(`/parties${id}`,party)
+  .then(res => {console.log("PUT", res.data)
+  
+  })
+}
+useEffect(()=> {
+  axiosWithAuth().get("/parties")
+  .then( res => console.log (res.data))
+  .catch(err => console.log(err))
+
+})
+ 
+
+
+  console.log( "PP",partyInfo);
+  console.log( "PARTY",party)
 
   return (
     <div className="edit-party-container">
@@ -53,7 +97,7 @@ const EditParty = props => {
             placeholder="Number Of Guests"
             name="n_of_guests"
             onChange={handleChange}
-            value={partyInfo.n_of_guests}
+            value={party.n_of_guests}
           />
         </label>
         <label>
@@ -63,17 +107,17 @@ const EditParty = props => {
             placeholder="10"
             name="budget"
             onChange={handleChange}
-            value={partyInfo.budget}
+            value={party.budget}
           />
         </label>
         <label>
           Party Date
           <input
             type="date"
-            placeholder={partyInfo.date}
+            placeholder={party.date}
             name="date"
             onChange={handleChange}
-            value={partyInfo.date}
+            value={party.date}
           />
         </label>
         <label>
@@ -83,7 +127,7 @@ const EditParty = props => {
             placeholder="Party Theme"
             name="theme"
             onChange={handleChange}
-            value={partyInfo.theme}
+            value={party.theme}
           />
         </label>
         <button type="submit">Submit</button>

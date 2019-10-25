@@ -2,77 +2,161 @@ import React, { useState, useEffect } from "react";
 import axiosWithAuth from "../utils/axiosWithAuth";
 
 const AddParty = props => {
-  const [partyInfo, setPartyInfo] = useState([]);
 
-  const handleChange = e => {
-    setPartyInfo({
-      ...partyInfo,
-      [e.target.name]: e.target.value,
-      user_id: 1
-    });
-  };
+    
+console.log("PROPS" ,props)
+   
+    const [party,setParty]= useState([]);
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    axiosWithAuth()
-      .post("/parties", partyInfo)
-      .then(res => props.setEditItem(!props.editItem))
-      .catch(err => console.log(err));
-  };
+    const [ parties,setParties]= useState([])
 
-  console.log(partyInfo);
-  return (
-    <div className="add-party-container">
-      <form onSubmit={handleSubmit} className="add-party-form">
-        <label>
-          Party Name
-          <input
-            type="text"
-            placeholder="Party Name"
-            name="party_name"
-            onChange={handleChange}
-          />
-        </label>
-        <label>
-          Number Of Guests
-          <input
-            type="number"
-            placeholder="Number Of Guests"
-            name="n_of_guests"
-            onChange={handleChange}
-          />
-        </label>
-        <label>
-          Party Budget $
-          <input
-            type="number"
-            placeholder="10"
-            name="budget"
-            onChange={handleChange}
-          />
-        </label>
-        <label>
-          Party Date
-          <input
-            type="date"
-            placeholder={Date()}
-            name="date"
-            onChange={handleChange}
-          />
-        </label>
-        <label>
-          Party Theme
-          <input
-            type="text"
-            placeholder="Party Theme"
-            name="theme"
-            onChange={handleChange}
-          />
-        </label>
-        <button type="submit">Submit</button>
-      </form>
-    </div>
-  );
+const handleInputChange = e => {
+
+
+  setParty({
+   
+     ...party, [e.target.name]:e.target.value,
+     user_id:1
+
+  })
+}
+
+
+
+useEffect(()=> {
+
+  axiosWithAuth().get("/parties")
+  .then( res => setParties (res.data))
+  .catch(err => console.log(err))
+
+},[])
+
+console.log("PARTIES33", parties)
+
+const idList =parties.map(id => id.id);
+
+ 
+
+const addParty = e => {
+e.preventDefault();
+axiosWithAuth()
+.post("/parties", party)
+.then(res=> console.log("RES",res.data))
+
+ 
+}
+
+
+
+const deleteParty = id=> {
+  // e.preventDefault();
+  // const id = props.match.params;
+  console.log(id)
+ axiosWithAuth()
+.delete(`/parties/${id.id}`)
+.then(res=> console.log(res.data))
+
+
+}
+
+
+return(
+
+  <div> 
+
+
+    {parties.map (p => {
+      return (
+      <div>
+         <h1>{p.id}</h1>
+        <h2>{p.party_name}</h2> 
+
+        <button onClick={(e)=> deleteParty(p)}>x</button>
+        </div>)
+
+
+    })}
+
+<h1>{party.party_name}</h1>
+   <form  type = "submit" onSubmit = {addParty}>
+      <input
+      type="text"
+      name= "party_name"
+      value= {party.party_name}
+      placeholder = "party_name"
+      onChange = {handleInputChange}
+      
+      />
+        <input
+        type ="text"
+        name="n_of_guests"
+        value={party.n_of_guests}
+        placeholder="# of Guests"
+        onChange = {handleInputChange}
+
+        
+        
+        
+        
+        /> 
+
+
+      <input
+        type ="date"
+        name="date"
+        value={party.date}
+        placeholder= {Date()}
+        onChange = {handleInputChange}
+
+        
+        
+        
+        
+        /> 
+         <input
+        type ={Date()}
+        name="theme"
+        value={party.theme}
+        placeholder="theme"
+        onChange = {handleInputChange}
+
+        
+        
+        
+        
+        /> 
+         
+      <button type = "submit">ADD</button>
+      
+      
+      
+      
+
+
+
+
+
+
+
+
+
+
+
+   </form>
+
+
+</div>
+
+
+
+
+
+
+)
+
+
+
+
 };
 
 export default AddParty;
