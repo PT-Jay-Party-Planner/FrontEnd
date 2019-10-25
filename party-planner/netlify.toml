@@ -2,3 +2,8 @@
   command = "npm run build"
   publish="/party-planner/build"
   base = "party-planner"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
