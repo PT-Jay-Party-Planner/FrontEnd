@@ -19,13 +19,10 @@ const Dashboard = props => {
   return (
     <>
       {partyList.map(id => (
-        <Link to={`/party/${id.id}`}>
-          {id.party_name}
-          <button>View Party</button>
-        </Link>
+        <Link to={`/party/${id.id}`}>{id.party_name}</Link>
       ))}
 
-      <Link to="/add-party/1">
+      <Link to="/edit-shopping-list/1">
         <button>Party 1</button>
       </Link>
     </>

@@ -24,7 +24,7 @@ const EditParty = props => {
   const handleSubmit = e => {
     e.preventDefault();
     axiosWithAuth()
-      .post("/parties", partyInfo)
+      .post(`/parties/${id}`, partyInfo)
       .then(res => console.log(res))
       .catch(err => console.log(err));
   };

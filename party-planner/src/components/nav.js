@@ -5,7 +5,7 @@ const Nav = () => {
   return (
     <nav className="nav-container">
       <NavLink className="nav-link" to="/dashboard">
-        <img src="LOGO"></img>Dash
+        Dash
       </NavLink>
       <NavLink className="nav-link" to="/add-party">
         Add A Party

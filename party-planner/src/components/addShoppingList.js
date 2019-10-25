@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axiosWithAuth from "../utils/axiosWithAuth";
 
-import ShoppingItem from "../components/shoppingItem";
+import ShoppingEdit from "./shoppingEdit";
 
 const ShoppingList = props => {
   const id = props.match.params.id;
@@ -36,15 +36,15 @@ const ShoppingList = props => {
       <div className="budget-section">
         Total Budget Remaining! ${calculator(budget.budget, shoppingList)}
       </div>
-      {shoppingList.map(item => (
-        <ShoppingItem
-          key={id}
-          item={item}
-          editItem={editItem}
-          setEditItem={setEditItem}
-          id={budget.id}
-        />
-      ))}
+      {shoppingList &&
+        shoppingList.map(item => (
+          <ShoppingEdit
+            key={id}
+            item={item}
+            editItem={editItem}
+            setEditItem={setEditItem}
+          />
+        ))}
     </div>
   );
 };

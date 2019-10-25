@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
-import ShoppingList from "./components/addShoppingList";
 import RegisterUser from "./components/register";
 import PrivateRoute from "./utils/privateRoute";
 
@@ -10,6 +9,8 @@ import Login from "./components/login";
 import AddParty from "./components/addParty";
 import Dashboard from "./components/dashboard";
 import PartyItem from "./components/partyItem";
+import ShoppingEdit from "./components/addShoppingList";
+import ShoppingItem from "./components/shoppingItem";
 import EditParty from "./components/editParty";
 
 function App() {
@@ -27,7 +28,12 @@ function App() {
         <PrivateRoute
           exact
           path="/shopping-list/:id"
-          component={ShoppingList}
+          component={ShoppingItem}
+        />
+        <PrivateRoute
+          exact
+          path="/edit-shopping-list/:id"
+          component={ShoppingEdit}
         />
         <PrivateRoute exact path="/add-party" component={AddParty} />
         <PrivateRoute exact path="/edit-party/:id" component={EditParty} />
