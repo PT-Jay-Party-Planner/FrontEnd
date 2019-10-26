@@ -1,62 +1,56 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axiosWithAuth from "../utils/axiosWithAuth";
-
+import { Link } from "react-router-dom";
 const ShoppingItem = props => {
-  const [displayEditItem, setDisplayEditItem] = useState(false);
-  const [itemList, setItemList] = useState(props.item);
+  const [itemList, setItemList] = useState();
+  const [budget, setBudget] = useState([]);
 
-  const handleChange = e => {
-    setItemList({
-      ...itemList,
-      [e.target.name]: e.target.value
-    });
-  };
+  const id = props.match.params.id;
 
-  const handleSubmit = e => {
-    e.preventDefault();
+  useEffect(() => {
     axiosWithAuth()
-      .put(`/parties/${props.id}/shopping/${props.item.id}`, itemList)
-      .then(res => props.setEditItem(!props.editItem))
+      .get(`/parties/${id}/shopping/`)
+      .then(res => setItemList(res.data))
       .catch(err => console.log(err));
+    axiosWithAuth()
+      .get(`/parties/${id}`)
+      .then(res => setBudget(res.data))
+      .catch(err => console.log(err));
+  }, []);
+
+  const checkmark = e => {
+    if (e.target.value === true) {
+    }
   };
 
-  const blurHandler = () => {
-    setItemList({ ...itemList, price: Number(itemList.price) });
-  };
+  if (!itemList) return <div>Loading Items...</div>;
 
-  console.log(itemList);
+  const ShoppingButton = () => {
+    if (itemList.length > 0) {
+      return (
+        <Link to={`/edit-shopping-list/${id}`}>
+          <button>Edit List</button>
+        </Link>
+      );
+    } else
+      return (
+        <Link to={`/add-shopping-list/${id}`}>
+          <button>Add List</button>
+        </Link>
+      );
+  };
 
   return (
     <div>
-      <h1>{props.item.item}</h1>
-      <h2>${props.item.price}</h2>
-
-      <div className="shopping-form-container">
-        <form onSubmit={handleSubmit} className="add-item-form">
-          <label>
-            Edit Item
-            <input
-              type="text"
-              placeholder="Add Item"
-              name="item"
-              onChange={handleChange}
-              value={itemList.item}
-            />
-          </label>
-          <label>
-            Edit Budget $
-            <input
-              type="number"
-              placeholder="10"
-              name="price"
-              onChange={handleChange}
-              value={itemList.price}
-              onBlur={blurHandler}
-            />
-          </label>
-          <button type="submit">Submit</button>
-        </form>
-      </div>
+      Total Budget Remaining: ${budget.budget}
+      {itemList.map(item => (
+        <div>
+          <h1>{item.item}</h1> <h2>${item.price}</h2>
+          <span> Purchased?</span>
+          <input type="checkbox" onChange={checkmark} />
+        </div>
+      ))}
+      <ShoppingButton />
     </div>
   );
 };

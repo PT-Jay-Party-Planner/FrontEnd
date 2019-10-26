@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axiosWithAuth from "../utils/axiosWithAuth";
 
+import * as EditP from "../design/editparty-style";
+
 const EditParty = props => {
   const [partyInfo, setPartyInfo] = useState([]);
 
@@ -11,7 +13,7 @@ const EditParty = props => {
       .get(`/parties/${id}`)
       .then(res => setPartyInfo(res.data))
       .catch(err => console.log(err));
-  }, []);
+  }, [id]);
 
   const handleChange = e => {
     setPartyInfo({
@@ -24,18 +26,24 @@ const EditParty = props => {
   const handleSubmit = e => {
     e.preventDefault();
     axiosWithAuth()
-      .post("/parties", partyInfo)
-      .then(res => console.log(res))
+      .put(`/parties/${id}`, partyInfo)
+      .then(res => props.history.push(`/party/${id}`))
       .catch(err => console.log(err));
   };
 
-  console.log(partyInfo);
+  const deleteParty = e => {
+    e.preventDefault();
+    axiosWithAuth()
+      .delete(`/parties/${id}`)
+      .then(res => props.history.push(`/dashboard/`))
+      .catch(err => console.log(err));
+  };
 
   return (
-    <div className="edit-party-container">
-      <h1>Edit {partyInfo.party_name}</h1>
+    <EditP.EditPartyContainer>
+      <h1>Edit Your Party</h1>
 
-      <form onSubmit={handleSubmit} className="add-party-form">
+      <EditP.EditPartyForm onSubmit={handleSubmit} className="add-party-form">
         <label>
           Party Name
           <input
@@ -87,8 +95,10 @@ const EditParty = props => {
           />
         </label>
         <button type="submit">Submit</button>
-      </form>
-    </div>
+      </EditP.EditPartyForm>
+
+      <EditP.DeleteParty onClick={deleteParty}>Delete Party</EditP.DeleteParty>
+    </EditP.EditPartyContainer>
   );
 };
 

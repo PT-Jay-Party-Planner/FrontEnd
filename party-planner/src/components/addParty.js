@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axiosWithAuth from "../utils/axiosWithAuth";
 
+import * as AddP from "../design/addParty-style";
+
 const AddParty = props => {
   const [partyInfo, setPartyInfo] = useState([]);
 
@@ -13,17 +15,17 @@ const AddParty = props => {
   };
 
   const handleSubmit = e => {
-    e.preventDefault();
+    // e.preventDefault();
     axiosWithAuth()
       .post("/parties", partyInfo)
-      .then(res => props.setEditItem(!props.editItem))
+      .then(res => props.history.push("/dashboard/"))
       .catch(err => console.log(err));
   };
 
   console.log(partyInfo);
   return (
-    <div className="add-party-container">
-      <form onSubmit={handleSubmit} className="add-party-form">
+    <AddP.FormContainer>
+      <AddP.FormFields onSubmit={handleSubmit} className="add-party-form">
         <label>
           Party Name
           <input
@@ -70,8 +72,8 @@ const AddParty = props => {
           />
         </label>
         <button type="submit">Submit</button>
-      </form>
-    </div>
+      </AddP.FormFields>
+    </AddP.FormContainer>
   );
 };
 
