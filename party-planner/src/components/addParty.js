@@ -71,6 +71,18 @@ const AddParty = props => {
         </label>
         <button type="submit">Submit</button>
       </form>
+
+
+      
+      <div className= "footer">
+
+<img src= "https://cdn.zeplin.io/5da64e5e2e044a2ffcc440f3/assets/4dff3f94-f351-442d-9f98-9d5f7c3e4ef7.png" className="cupcake"/>
+
+
+
+
+
+</div>
     </div>
   );
 };

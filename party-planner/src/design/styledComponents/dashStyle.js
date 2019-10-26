@@ -13,7 +13,7 @@ export const Header = styled.div `
      
          display:flex;
         position: relative;
-     }
+      }
      .logo{
          position: absolute;
          margin:1px;
@@ -53,6 +53,17 @@ color::#f58676;
  flex-direction:column;
  align-items:center;
  aligncontent: center;
+
+
+
+ @media(max-width:800){
+     width: 800px;
+ }
+
+
+ @media(max-width: 500px){
+     width:500px;
+ }
  `
   export const Middle = styled.div `
   
@@ -97,6 +108,7 @@ color::#f58676;
     border:2px solid grey;
     border-radius: 80px;
     margin:auto;
+    width: 100;
 
    }
   
@@ -129,6 +141,9 @@ color::#f58676;
   `
 
   export const PlusButton = styled.button `
+    
+
+
     color:white;
     background-color:#f58676;
     border-radius:40px;
@@ -139,6 +154,25 @@ color::#f58676;
         background-color:white;
         color:#f58676;
         font: RalewayExtra bold;
+    }
+     
+ 
+
+    @media(max-width: 500) {
+
+        color:white;
+        background-color:#f58676;
+        border-radius:40px;
+        font-size:20pt;
+        margin: 10px;
+         
+        &:hover{
+            background-color:white;
+            color:#f58676;
+            font: RalewayExtra bold;
+        }
+    
+
     }
   
   `
