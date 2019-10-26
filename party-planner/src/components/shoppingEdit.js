@@ -1,63 +1,66 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axiosWithAuth from "../utils/axiosWithAuth";
 import { withRouter } from "react-router-dom";
 
 const ShoppingEdit = props => {
   const [displayEditItem, setDisplayEditItem] = useState(false);
   const [itemList, setItemList] = useState(props.item);
+  const [newItemList, setNewItemList] = useState([]);
 
-  const handleChange = e => {
-    setItemList({
-      ...itemList,
-      [e.target.name]: e.target.value
-    });
-  };
+  const id = props.match.params.id;
 
-  const handleSubmit = e => {
-    e.preventDefault();
+  useEffect(() => {
     axiosWithAuth()
-      .put(`/parties/${props.id}/shopping/${props.item.id}`, itemList)
-      .then(res => props.history.push(`/shopping-list/${props.id}`))
+      .get(`/parties/${id}/shopping/`)
+      .then(res => setItemList(res.data))
       .catch(err => console.log(err));
+  }, []);
+
+  const handleChange = (e, i) => {
+    const copy = [...itemList];
+    copy[i] = { ...copy[i], [e.target.name]: e.target.value };
+    setItemList(copy);
   };
 
-  const blurHandler = () => {
-    setItemList({ ...itemList, price: Number(itemList.price) });
+  const handleSubmit = (e, i) => {
+    e.preventDefault();
+    console.log(i);
+    axiosWithAuth()
+      .put(`/parties/${id}/shopping/${id}`, itemList[i])
+      .then(res => console.log(res.data))
+      .catch(err => console.log(err.response.data));
   };
 
-  console.log(itemList);
-
+  if (!itemList) return <div>Loading Items...</div>;
   return (
     <div>
-      <h1>{props.item.item}</h1>
-      <h2>${props.item.price}</h2>
-
-      <div className="shopping-form-container">
-        <form onSubmit={handleSubmit} className="add-item-form">
+      {itemList.map((item, i) => (
+        <form
+          name={item.id}
+          onSubmit={e => handleSubmit(e, i)}
+          className="add-item-form"
+        >
           <label>
             Edit Item
             <input
               type="text"
-              placeholder="Add Item"
               name="item"
-              onChange={handleChange}
-              value={itemList.item}
+              onChange={e => handleChange(e, i)}
+              value={item.item}
             />
           </label>
           <label>
-            Edit Budget $
+            Edit Price
             <input
               type="number"
-              placeholder="10"
               name="price"
-              onChange={handleChange}
-              value={itemList.price}
-              onBlur={blurHandler}
+              onChange={e => handleChange(e, i)}
+              value={item.price}
             />
           </label>
           <button type="submit">Submit</button>
         </form>
-      </div>
+      ))}
     </div>
   );
 };

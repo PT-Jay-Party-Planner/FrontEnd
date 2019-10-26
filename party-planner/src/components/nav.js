@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import * as NavS from "../design/nav-style";
 
 const Nav = () => {
   return (
-    <nav className="nav-container">
+    <NavS.NavContainer>
       <NavLink className="nav-link" to="/dashboard">
         Dash
       </NavLink>
@@ -13,13 +14,10 @@ const Nav = () => {
       <NavLink className="nav-link" to="/to-do-list">
         To Do List
       </NavLink>
-      <NavLink className="nav-link" to="/shopping-list">
-        Shopping List
-      </NavLink>
       <NavLink className="login-link" to="/login">
         Login
       </NavLink>
-    </nav>
+    </NavS.NavContainer>
   );
 };
 

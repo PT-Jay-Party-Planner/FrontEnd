@@ -10,7 +10,8 @@ export const Header = styled.div`
   width: 100%;
   height: 400px;
   background-image: url(${headerimg});
-  display: block;
+  display: flex;
+  justify-content: center;
 `;
 
 export const TitleText = styled.a`

@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import axiosWithAuth from "../utils/axiosWithAuth";
 
 import * as Dash from "../design/dashboard";
+import { Icon, InlineIcon } from "@iconify/react";
+import plusSign from "@iconify/icons-el/plus-sign";
 
 const Dashboard = props => {
   const [partyList, setPartyList] = useState([]);
@@ -15,22 +17,29 @@ const Dashboard = props => {
       .catch(err => console.log(err));
   }, []);
 
-  console.log(partyList);
-
   return (
-    <div className="dashboard-container">
-      {partyList.map(id => (
-        <Dash.DashContainers>
-          <Dash.ImportImage>
+    <div>
+      <Dash.PartyButtonSection>
+        <Dash.AddParty>
+          <Dash.RouterLink href="/add-party">
+            Add Party<br></br>
+            <Icon
+              style={{ fontSize: "1.5rem", color: "#F58676" }}
+              icon={plusSign}
+            />
+          </Dash.RouterLink>
+        </Dash.AddParty>
+      </Dash.PartyButtonSection>
+      <Dash.DashContainers>
+        {partyList.map(id => (
+          <Dash.LinkContainer>
             <img src="https://source.unsplash.com/ORSGQc-2Ef8/250x250"></img>
-          </Dash.ImportImage>
-          <Dash.PartyButton>
-            <Link className="party-item" to={`/party/${id.id}`}>
-              {id.party_name}
-            </Link>
-          </Dash.PartyButton>
-        </Dash.DashContainers>
-      ))}
+            <Dash.PartyButton>
+              <Link to={`/party/${id.id}`}>{id.party_name}</Link>
+            </Dash.PartyButton>
+          </Dash.LinkContainer>
+        ))}
+      </Dash.DashContainers>
     </div>
   );
 };
