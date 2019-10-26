@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axiosWithAuth from "../utils/axiosWithAuth.js";
 import { useHistory } from "react-router-dom";
+import * as Log from '../design/styledComponents/loginStyle';
 
 const Login = () => {
   const history = useHistory();
@@ -30,10 +31,20 @@ const Login = () => {
     });
   };
   return (
-    <>
+    <Log.Container>
       <h1>Welcome To The Party Planner</h1>
       <br />
-      <form onSubmit={handleLogin}>
+
+
+
+      <Log.Header>
+          
+         
+          <img  className = "background"src ="https://github.com/PT-Jay-Party-Planner/UXDesign/blob/master/Assets/Images/s-o-c-i-a-l-c-u-t-CZ8XutyXLr8-unsplash.jpg?raw=true"/>
+
+          <img className = "logo" src ="https://github.com/PT-Jay-Party-Planner/UXDesign/blob/master/Style%20Guide/Web%20Style%20Guide/Logo-biggersize.jpg?raw=true"/>
+        </Log.Header>
+      <Log.StyledForm onSubmit={handleLogin}>
         <input
           type="text"
           placeholder="username"
@@ -48,9 +59,24 @@ const Login = () => {
           value={userData.password}
           onChange={handleChange}
         />
-        <input type="submit" />
-      </form>
-    </>
+        <Log.StyledButton>Log In</Log.StyledButton> 
+      </Log.StyledForm>
+
+
+
+
+
+      
+      <div className= "footer">
+
+<img src= "https://cdn.zeplin.io/5da64e5e2e044a2ffcc440f3/assets/4dff3f94-f351-442d-9f98-9d5f7c3e4ef7.png" className="cupcake"/>
+
+
+
+
+
+</div>
+    </Log.Container>
   );
 };
 
