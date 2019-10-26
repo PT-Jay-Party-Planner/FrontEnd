@@ -1,6 +1,8 @@
 import React from 'react';
 import TodoList from './toDoList';
 import styled from 'styled-components';
+import Footer from './footer';
+
 
 const TodoContainer=styled.section`
 width: 95%;
@@ -47,19 +49,7 @@ text-align: center;
 font-family: Raleway;
 font-size: 2.5rem;`
 
-const PartyDownImage=styled.img`
-height: 185px;
-width: 80%;
-padding-top: 4%;
-@media (max-width: 800px) {
-   
-    width: 100%;
-}
-@media (max-width: 500px) {
-    
-    width: 100%;
-}
-`
+
 
 const TodoBodyContainer=styled.div`
 width: 60%;
@@ -126,7 +116,7 @@ function ToDoPage(){
                     <Savebtn type="submit">Save List</Savebtn><br></br>
                 </Button>
             </TodoBodyContainer>
-            <PartyDownImage src="https://images.unsplash.com/photo-1486427944299-d1955d23e34d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" alt="cupcakes"/>
+            <Footer/>
         </TodoContainer>
     )
 }

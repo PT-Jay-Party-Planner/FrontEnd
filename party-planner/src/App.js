@@ -32,7 +32,7 @@ function App() {
         />
         <PrivateRoute exact path="/add-party" component={AddParty} />
         <PrivateRoute exact path="/edit-party/:id" component={EditParty} />
-        <Route path="/todo" component={TodoPage} />
+        <Route path="/to-do-list" component={TodoPage} />
       </Router>
     </div>
 

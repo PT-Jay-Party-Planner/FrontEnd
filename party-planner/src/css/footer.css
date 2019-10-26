@@ -1,0 +1,37 @@
+.party-feet {
+  height: 105px;
+  width: 100%;
+  padding-top: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+@media (max-width: 800px) {
+  .party-feet {
+    padding-top: 4%;
+    width: 100%;
+  }
+}
+@media (max-width: 500px) {
+  .party-feet {
+    padding-top: 4%;
+    width: 100%;
+  }
+}
+.party-down {
+  height: 185px;
+  width: 80%;
+}
+@media (max-width: 800px) {
+  .party-down {
+    padding-top: 24%;
+    width: 100%;
+  }
+}
+@media (max-width: 500px) {
+  .party-down {
+    padding-top: 34%;
+    width: 100%;
+  }
+}
