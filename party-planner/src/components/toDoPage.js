@@ -1,5 +1,6 @@
 import React from "react";
 import * as All from "../design/toDoPage";
+import TodoList from "./toDoList";
 
 const ToDoPage = () => {
   return (
@@ -15,7 +16,7 @@ const ToDoPage = () => {
         <All.TodoBodyContainer>
           <All.PartyH2>Ready to create your To Do list?</All.PartyH2>
           <h4 className="list-name">To Do List Name</h4>
-          {/* <TodoList /> */}
+          <TodoList />
         </All.TodoBodyContainer>
         <All.PartyDownImage
           src="https://images.unsplash.com/photo-1486427944299-d1955d23e34d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"
