@@ -12,7 +12,7 @@ const Login = () => {
 
   const handleLogin = e => {
     e.preventDefault();
-    axiosWithAuth
+    axiosWithAuth()
       .post("/auth/login", userData)
       .then(res => {
         localStorage.setItem("Authorization", res.data.token);
