@@ -13,10 +13,12 @@ import ShoppingItem from "./components/shoppingItem";
 import EditParty from "./components/editParty";
 import ToDoPage from "./components/toDoPage";
 import AddShoppingList from "./components/addShoppingList";
+import Footer from './components/footer';
 
 import * as AppStyle from "./design/app-design";
 
 function App() {
+  console.log(localStorage.getItem("Authorization"))
   return (
     <div className="App">
       <AppStyle.Header>
@@ -51,6 +53,7 @@ function App() {
           <PrivateRoute exact path="/edit-party/:id" component={EditParty} />
           <PrivateRoute exact path="/to-do-list" component={ToDoPage} />
         </Router>
+        <Footer/>
       </AppStyle.AppContainer>
     </div>
   );

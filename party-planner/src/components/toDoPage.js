@@ -1,6 +1,7 @@
 import React from "react";
-import * as All from "../design/toDoPage";
+import * as All from "../design/TodoStyle";
 import TodoList from "./toDoList";
+
 
 const ToDoPage = () => {
   return (
@@ -9,6 +10,7 @@ const ToDoPage = () => {
         <All.TodoBodyContainer>
           <All.PartyH2>Ready to create your To Do list?</All.PartyH2>
           <h4 className="list-name">To Do List Name</h4>
+          
           <TodoList />
         </All.TodoBodyContainer>
       </All.TodoContainer>
