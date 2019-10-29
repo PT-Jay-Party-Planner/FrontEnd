@@ -15,6 +15,7 @@ const Login = () => {
       .post("/auth/login", userData)
       .then(res => {
         localStorage.setItem("Authorization", res.data.token);
+        localStorage.setItem( "username", userData.username)
         console.log(res.data);
         history.push("/shopping-list");
       })

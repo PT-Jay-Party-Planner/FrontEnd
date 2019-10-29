@@ -25,7 +25,7 @@ const handleInputChange = e => {
 
 useEffect(()=> {
 
-  axiosWithAuth().get("/parties")
+  axiosWithAuth().get("https://pt-jay-party-planner.herokuapp.com/parties")
   .then( res => setParties (res.data))
   .catch(err => console.log(err))
 
@@ -72,7 +72,8 @@ return(
         <h2>{p.party_name}</h2> 
 
         <button onClick={(e)=> deleteParty(p)}>x</button>
-        </div>)
+
+         </div>)
 
 
     })}
@@ -114,7 +115,7 @@ return(
         
         /> 
          <input
-        type ={Date()}
+        type ="text"
         name="theme"
         value={party.theme}
         placeholder="theme"

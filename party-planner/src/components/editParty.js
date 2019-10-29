@@ -36,33 +36,18 @@ const EditParty = props => {
   };
 
 
-  // const handleChange = e =>{
-  //   setParty ({
-  //     ...party,
-  //     [e.target.name]:e.target.value,
-  //     user_id: 1
-  //   })
-    
-
-  // }
+  
 
   const handleSubmit = e => {
     e.preventDefault();
     axiosWithAuth()
-      .post("/parties", partyInfo)
+      .put(`/parties/${id}`, partyInfo)
       .then(res => console.log(res))
       .catch(err => console.log(err));
   };
 
 
-const saveEdit = e => {
-  e.preventDefault();
-  axiosWithAuth()
-  .post(`/parties${id}`,party)
-  .then(res => {console.log("PUT", res.data)
-  
-  })
-}
+ 
 useEffect(()=> {
   axiosWithAuth().get("/parties")
   .then( res => console.log (res.data))
